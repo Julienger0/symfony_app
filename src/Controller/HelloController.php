@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Service\Greeter;
 
 class HelloController extends AbstractController{
     // function hello(Request $request){
@@ -69,9 +70,25 @@ class HelloController extends AbstractController{
     /**
     * @Route("hello/{_locale}")
     */
-    function hello(Request $request){
+    /* function hello(Request $request){
         $locale=$request->getLocale();
         return new Response('Hello, locale : ' . $locale);
-    }
+    } */
 
+
+
+
+
+
+
+
+
+    /**
+     * @Route("hello")
+     */
+    function hello(Greeter $greeter){
+        $message = $greeter->greet();
+        return new Response($message);
+
+    }
 }
